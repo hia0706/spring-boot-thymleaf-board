@@ -1,19 +1,17 @@
-package kr.co.jhta;
+package kr.co.jhta.repository;
 
 import kr.co.jhta.entity.Member;
-import kr.co.jhta.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SpringBootThymleafBoardApplicationTests {
+import static org.junit.jupiter.api.Assertions.*;
 
+class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @Test
-    public void testSaveMember() {
+
+    public  void testSaveMember() {
         Member member = new Member();
         member.setId("hong");
         member.setPassword("zxcv1234");
@@ -23,4 +21,5 @@ class SpringBootThymleafBoardApplicationTests {
 
         memberRepository.save(member);
     }
+
 }
