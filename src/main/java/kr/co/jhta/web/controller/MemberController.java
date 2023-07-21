@@ -23,6 +23,11 @@ public class MemberController {
 
     private final MemberSerivce memberSerivce;
 
+    @GetMapping("/login")
+    public String loginform() {
+        return "member/loginform";
+    }
+
     @GetMapping("/register")
     public String form(Model model) {
         /*
