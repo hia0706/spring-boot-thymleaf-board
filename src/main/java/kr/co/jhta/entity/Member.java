@@ -20,11 +20,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity
-@Table(name = "sample_board_members")
+@DynamicInsert // 입력안한 null 값 컬럼들은 default 값으로 설정된다.
 @Getter
 @Setter
-@DynamicInsert // 입력안한 null 값 컬럼들은 default 값으로 설정된다.
+@Entity
+@Table(name = "sample_board_members")
 @NoArgsConstructor
 public class Member extends BaseDateTimeEntity implements UserDetails {
 
