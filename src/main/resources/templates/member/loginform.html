@@ -8,6 +8,15 @@
         </div>
     </div>
     <div class="row mb-3">
+        <div th:if="${#strings.equals(param.error, 'fail')}" class="alert alert-danger">
+            <strong>로그인 실패</strong> 아이디 혹은 비밀번호가 일치하지 않습니다.
+        </div>
+        <div th:if="${#strings.equals(param.error, 'denied')}" class="alert alert-danger">
+            <strong>요청 거부</strong> 로그인이 필요한 요청입니다.
+        </div>
+        <div th:if="${#strings.equals(param.error, 'forbidden')}" class="alert alert-danger">
+            <strong>접근권한 부족</strong> 해당 요청에 필요한 권한이 없습니다.
+        </div>
         <form class="border bg-light p-3" method="post" th:action="@{/member/login}">
             <div class="form-control mb-3">
                 <label class="form-label">아이디</label>
