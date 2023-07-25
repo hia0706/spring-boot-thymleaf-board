@@ -1,17 +1,19 @@
 package kr.co.jhta.web.controller;
 
-import kr.co.jhta.service.MemberSerivce;
-import kr.co.jhta.service.exception.DuplicatedEmailEception;
+import kr.co.jhta.exception.DuplicatedEmailException;
+import kr.co.jhta.service.MemberService;
 import kr.co.jhta.service.exception.DuplicatedMemberIdException;
 import kr.co.jhta.web.form.RegisterMemberForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 

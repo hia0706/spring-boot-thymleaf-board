@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import kr.co.jhta.dto.PostDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -16,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.jhta.dto.Pagination;
 import kr.co.jhta.entity.Member;
@@ -31,6 +34,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PostController {
     private final PostService postService;
+
+    @GetMapping("/detail")
+    public String detail(@RequestParam("no") int no, Model model) {
+        PostDto postDto= postService.getPost(no);
+        model.addAttribute("post", postDto);
+
+        return "post/detail";
+    }
+
+    @GetMapping("/read")
+    public String read(@RequestParam("no") int no,
+                       @RequestParam("page") int page,
+                       RedirectAttributes redirectAttributes) {
+
+        postService.increaseReadCount(no);
+
+        // 재요청 URL의 쿼리스트링을 작성한다.
+        redirectAttributes.addAttribute("no", no);
+        redirectAttributes.addAttribute("page", page);
+
+        return "redirect:/post/detail";   // post/detail?no=10000&page=1
+    }
 
     @GetMapping("/list")
     public String list(@PageableDefault(page = 0,
