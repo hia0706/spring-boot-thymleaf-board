@@ -25,8 +25,9 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public List<Post> getPost() {
+	public Page<Post> getPosts(Pageable pageable) {
+		return postRepository.findAll(pageable);
+		
+	}
 
-        return postRepository.findAll();
-    }
 }

@@ -50,6 +50,7 @@ public class Member extends BaseDateTimeEntity implements UserDetails {
 	// 로그인 하면 모든 사용자의 권한은 "ROLE_USER"로 지정
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		//로그인 시 로그인한 사람에게 모두 유저 권한을 부여한다.
 		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 
